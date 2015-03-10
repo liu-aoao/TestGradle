@@ -17,10 +17,14 @@ buildscript {
         maven {
             url "https://snapchat.artifactoryonline.com/snapchat/plugins"
             credentials {
-//                username = artifactoryUsername
-//                password = artifactoryPassword
-                username = "Yunao.Liu"
-                password = "Snapchat1"
+                if (System.getenv('CIRCLECI')) {
+                    username = artifactoryUsername
+                    password = artifactoryPassword
+                }
+                else {
+                    username = "Yunao.Liu"
+                    password = "Snapchat1"
+                }
             }
         }
     }
