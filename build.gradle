@@ -1,1 +1,20 @@
-// This is an empty file
+apply plugin: 'java'
+
+version = '0.1'
+
+buildscript {
+    if (System.getenv('CIRCLECI')) {
+        ext.artifactoryUsername = System.getenv('ARTIFACTORY_USERNAME')
+        ext.artifactoryPassword = System.getenv('ARTIFACTORY_PASSWORD')
+    }
+
+    repositories {
+        maven {
+            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
+            credentials {
+                username = artifactoryUsername
+                password = artifactoryPassword
+            }
+        }
+    }
+}
