@@ -1,6 +1,11 @@
 apply plugin: 'java'
+apply plugin: 'application'
 
-version = '0.1'
+ext.projectIds = ['group': 'com.aoao.TestGradle', 'version': '0.1.0']
+group = projectIds.group
+version = projectIds.version
+
+mainClassName = "com.aoao.TestGradle.module3.Run"
 
 buildscript {
     if (System.getenv('CIRCLECI')) {
@@ -12,9 +17,51 @@ buildscript {
         maven {
             url "https://snapchat.artifactoryonline.com/snapchat/plugins"
             credentials {
-                username = artifactoryUsername
-                password = artifactoryPassword
+//                username = artifactoryUsername
+//                password = artifactoryPassword
+                username = "Yunao.Liu"
+                password = "Snapchat1"
             }
         }
     }
 }
+
+dependencies {
+    compile "com.google.guava:guava:17.0"
+}
+
+repositories {
+    mavenCentral()
+}
+
+project(':module1') {
+    group = projectIds.group
+    version = projectIds.version
+    apply plugin: 'java'
+}
+
+project(':module2') {
+    group = projectIds.group
+    version = projectIds.version
+    apply plugin: 'java'
+
+    dependencies {
+        compile project(':module1')
+    }
+}
+
+project(':module3') {
+    group = projectIds.group
+    version = projectIds.version
+    apply plugin: 'java'
+
+    dependencies {
+        compile project(':module1')
+        compile project(':module2')
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.3'
+}
+
