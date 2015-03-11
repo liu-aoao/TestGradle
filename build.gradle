@@ -13,7 +13,25 @@ buildscript {
         ext.artifactoryPassword = System.getenv('ARTIFACTORY_PASSWORD')
     }
 
-    repositories {
+//    repositories {
+//        maven {
+//            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
+//            credentials {
+//                if (System.getenv('CIRCLECI')) {
+//                    username = artifactoryUsername
+//                    password = artifactoryPassword
+//                }
+//                else {
+//                    username = "Yunao.Liu"
+//                    password = "Snapchat1"
+//                }
+//            }
+//        }
+//    }
+}
+
+allprojects {
+    it.repositories {
         maven {
             url "https://snapchat.artifactoryonline.com/snapchat/plugins"
             credentials {
@@ -30,18 +48,9 @@ buildscript {
     }
 }
 
-dependencies {
-    compile "com.google.guava:guava:17.0"
-}
-
-repositories {
-    mavenCentral()
-}
-
 project(':module1') {
     group = projectIds.group
     version = projectIds.version
-    apply plugin: 'java'
 }
 
 project(':module2') {
@@ -64,6 +73,14 @@ project(':module3') {
         compile project(':module2')
     }
 }
+
+
+task resolveAllDependencies() << {
+    subprojects {
+        it.dependencies()
+    }
+}
+
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'

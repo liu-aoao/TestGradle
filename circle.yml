@@ -1,0 +1,29 @@
+# This file defines the continuous integration build process to be run at circleci.com.
+
+general:
+  branches:
+    only:
+      - release
+      - master
+      - circleci
+
+machine:
+  java:
+    version: oraclejdk7
+
+dependencies:
+  override:
+    - ./gradlew resolveAllDependencies
+  cache_directories:
+    - module1/build
+    - module2/build
+    - module3/build
+    - .gradle
+    - ~/.gradle
+
+test:
+  override:
+    - ./gradlew test
+
+deployment:
+  master:
