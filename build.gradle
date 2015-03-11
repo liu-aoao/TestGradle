@@ -16,21 +16,22 @@ buildscript {
 
 allprojects {
     it.repositories {
-        maven {
-            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
-            credentials {
-                if (System.getenv('CIRCLECI')) {
-                    username = artifactoryUsername
-                    password = artifactoryPassword
-                    println "I'm here, username = $username, password = $password"
-                }
-                else {
-                    username = "Yunao.Liu"
-                    password = "Snapchat1"
-                    println "I'm here, username = $username, password = $password"
-                }
-            }
-        }
+        mavenCentral()
+//        maven {
+//            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
+//            credentials {
+//                if (System.getenv('CIRCLECI')) {
+//                    username = artifactoryUsername
+//                    password = artifactoryPassword
+//                    println "I'm here, username = $username, password = $password"
+//                }
+//                else {
+//                    username = "Yunao.Liu"
+//                    password = "Snapchat1"
+//                    println "I'm here, username = $username, password = $password"
+//                }
+//            }
+//        }
     }
 }
 
