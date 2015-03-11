@@ -2,22 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="52537e4f-fb65-44a5-be46-ca0196ed7e69" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/libs/TestGradle-0.1.0.jar" afterPath="$PROJECT_DIR$/build/libs/TestGradle-0.1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/TestGradle-0.1.0.tar" afterPath="$PROJECT_DIR$/build/distributions/TestGradle-0.1.0.tar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/distributions/TestGradle-0.1.0.zip" afterPath="$PROJECT_DIR$/build/distributions/TestGradle-0.1.0.zip" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/cache.properties.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileHashes.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/fileSnapshots.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module1/build/libs/module1-0.1.0.jar" afterPath="$PROJECT_DIR$/module1/build/libs/module1-0.1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module2/build/libs/module2-0.1.0.jar" afterPath="$PROJECT_DIR$/module2/build/libs/module2-0.1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module3/build/libs/module3-0.1.0.jar" afterPath="$PROJECT_DIR$/module3/build/libs/module3-0.1.0.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/outputFileStates.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.3/taskArtifacts/taskArtifacts.bin" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/TestGradle.bat" afterPath="$PROJECT_DIR$/build/scripts/TestGradle.bat" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/scripts/TestGradle" afterPath="$PROJECT_DIR$/build/scripts/TestGradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.gradle" afterPath="$PROJECT_DIR$/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/module1/build.gradle" afterPath="$PROJECT_DIR$/module1/build.gradle" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/circle.yml" afterPath="$PROJECT_DIR$/circle.yml" />
     </list>
     <ignored path="TestGradle.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,21 +27,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="true">
+      <file leaf-file-name="build.gradle" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.gradle">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.49130434" vertical-offset="1214" max-vertical-offset="1692">
+            <state vertical-scroll-proportion="0.0" vertical-offset="1214" max-vertical-offset="1692">
               <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="circle.yml" pinned="false" current-in-tab="false">
+      <file leaf-file-name="circle.yml" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/circle.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="612">
-              <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+            <state vertical-scroll-proportion="0.75838923" vertical-offset="129" max-vertical-offset="576">
+              <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -89,10 +74,10 @@
         <option value="$PROJECT_DIR$/settings.gradle" />
         <option value="$PROJECT_DIR$/module3/build.gradle" />
         <option value="$PROJECT_DIR$/module3/src/main/java/com/aoao/TestGradle/module3/Run.java" />
-        <option value="$PROJECT_DIR$/circle.yml" />
         <option value="$PROJECT_DIR$/module2/build.gradle" />
         <option value="$PROJECT_DIR$/module1/build.gradle" />
         <option value="$PROJECT_DIR$/build.gradle" />
+        <option value="$PROJECT_DIR$/circle.yml" />
       </list>
     </option>
   </component>
@@ -677,18 +662,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/circle.yml">
+    <entry file="file://$PROJECT_DIR$/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="612">
-          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1214" max-vertical-offset="1692">
+          <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/build.gradle">
+    <entry file="file://$PROJECT_DIR$/circle.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.49130434" vertical-offset="1214" max-vertical-offset="1692">
-          <caret line="80" column="5" selection-start-line="80" selection-start-column="5" selection-end-line="80" selection-end-column="5" />
+        <state vertical-scroll-proportion="0.75838923" vertical-offset="129" max-vertical-offset="576">
+          <caret line="26" column="0" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>

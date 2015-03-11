@@ -24,6 +24,3 @@ dependencies:
 test:
   override:
     - ./gradlew test
-
-deployment:
-  master:
