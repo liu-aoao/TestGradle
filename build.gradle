@@ -14,8 +14,8 @@ buildscript {
     }
 }
 
-allprojects {
-    it.repositories {
+allprojects { module ->
+    module.repositories {
         mavenCentral()
 //        maven {
 //            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
@@ -36,13 +36,10 @@ allprojects {
 }
 
 project(':module1') {
-    group = projectIds.group
-    version = projectIds.version
+    apply plugin: 'java'
 }
 
 project(':module2') {
-    group = projectIds.group
-    version = projectIds.version
     apply plugin: 'java'
 
     dependencies {
@@ -51,8 +48,6 @@ project(':module2') {
 }
 
 project(':module3') {
-    group = projectIds.group
-    version = projectIds.version
     apply plugin: 'java'
 
     dependencies {
@@ -61,6 +56,41 @@ project(':module3') {
     }
 }
 
+subprojects { module ->
+
+    module.group = projectIds.group
+    module.version = projectIds.version
+
+    task annouceBuilt << {
+        print "Project is built, the result is: "
+        if (module.assemble.state.getFailure() != null) {
+            println "FAILURE!"
+        } else {
+            println "SUCCESS!"
+        }
+
+        if (module.assemble.state.getSkipMessage() == "UP-TO-DATE") {
+            println "Task is already up-to-date"
+        } else {
+            println "This is a new built"
+        }
+    }
+
+    task annouceTest << {
+        print "Task test is executed, the result is: "
+        if (module.test.state.failure == null) {
+            println "SUCCESS!"
+        } else {
+            println "FAILURE!"
+        }
+    }
+
+    module.assemble.finalizedBy(":$module.name:annouceBuilt")
+    module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
+    module.test.finalizedBy(":$module.name:annouceTest")
+    module.annouceTest.mustRunAfter(":$module.name:test")
+
+}
 
 task resolveAllDependencies() << {
     subprojects {

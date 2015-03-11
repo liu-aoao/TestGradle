@@ -1,0 +1,50 @@
+// Add task to annouceBuild done to all subprojects
+
+subprojects { module ->
+
+    task annouceBuilt << {
+        print "Project is built, the result is: "
+        if (module.assemble.state.getFailure() != null) {
+            println "FAILURE!"
+        } else {
+            println "SUCCESS!"
+        }
+
+        if (module.assemble.state.getSkipMessage() == "UP-TO-DATE") {
+            println "Task is already up-to-date"
+        } else {
+            println "This is a new built"
+        }
+    }
+
+    task annouceTest << {
+        print "Task test is executed, the result is: "
+        if (module.test.state.failure == null) {
+            println "SUCCESS!"
+        } else {
+            println "FAILURE!"
+        }
+    }
+
+    module.assemble.finalizedBy(":$module.name:annouceBuilt")
+    module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
+    module.test.finalizedBy(":$module.name:annouceTest")
+    module.annouceTest.mustRunAfter(":$module.name:test")
+
+}
+
+// locate lib file after build
+
+task filename << {
+    def builtJarName = "$project.name" + "-" + "$version" + ".jar"
+    def builtJar = file(buildDir.toString() + "/libs/" + builtJarName)
+    def destDir = file(buildDir.toString() + "/tmp")
+    inputs.file builtJar
+    outputs.dir destDir
+
+    doLast {
+        println "!!!!!!!\nI'm running!\n!!!!!!!!!"
+        def destFile = new File(destDir, "tmp.txt")
+        destFile.text = "allways the same\n"
+    }
+}

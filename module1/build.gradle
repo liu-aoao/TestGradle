@@ -4,4 +4,44 @@ dependencies {
     compile "com.google.guava:guava:17.0"
 }
 
+task filename << {
+    def builtJarName = "$project.name" + "-" + "$version" + ".jar"
+    def builtJar = file(buildDir.toString() + "/libs/" + builtJarName)
+    def destDir = file(buildDir.toString() + "/tmp")
+    inputs.file builtJar
+    outputs.dir destDir
+
+    doLast {
+        println "!!!!!!!\nI'm running!\n!!!!!!!!!"
+        def destFile = new File(destDir, "tmp.txt")
+        destFile.text = "allways the same\n"
+    }
+}
+
+//task annouceBuilt << {
+//    print "Project is built, the result is: "
+//    if (assemble.state.getFailure() != null) {
+//        println "FAILURE!"
+//    } else {
+//        println "SUCCESS!"
+//    }
+//
+//    if (assemble.state.getSkipMessage() == "UP-TO-DATE") {
+//        println "Task is already up-to-date"
+//    } else {
+//        println "This is a new built"
+//    }
+//}
+//
+//task annouceTest << {
+//    print "Task test is executed, the result is: "
+//    if (test.state.failure == null) {
+//        println "SUCCESS!"
+//    } else {
+//        println "FAILURE!"
+//    }
+//}
+//
+//assemble.finalizedBy("annouceBuilt")
+//test.finalizedBy("annouceTest")
 
