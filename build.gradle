@@ -15,8 +15,25 @@ buildscript {
 }
 
 allprojects { module ->
+
     module.repositories {
         mavenCentral()
+    }
+
+    module.group = projectIds.group
+    module.version = projectIds.version
+
+    task checkJarExists {
+        print "Looking for existing JAR file... "
+        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
+        print targetFilePath
+        println " ... File exists: " + file(targetFilePath).exists().toString()
+
+        ant.checksum(file: file(targetFilePath))
+        println file(targetFilePath + ".MD5").text
+    }
+
+//    module.repositories {
 //        maven {
 //            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
 //            credentials {
@@ -32,7 +49,7 @@ allprojects { module ->
 //                }
 //            }
 //        }
-    }
+//    }
 }
 
 project(':module1') {
@@ -58,17 +75,6 @@ project(':module3') {
 
 subprojects { module ->
 
-    module.group = projectIds.group
-    module.version = projectIds.version
-
-    task checkJarExists {
-        print "Looking for existing JAR file... "
-        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
-        println targetFilePath
-
-        println "File exists: " + file(targetFilePath).exists().toString()
-    }
-
     task annouceBuilt << {
         print "Project is built, the result is: "
         if (module.assemble.state.getFailure() != null) {
@@ -93,20 +99,11 @@ subprojects { module ->
         }
     }
 
-    module.assemble.mustRunAfter(":$module.name:checkJarExists")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
     module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
     module.annouceTest.mustRunAfter(":$module.name:test")
 
-}
-
-task checkCheckSumExists {
-    def folderName = file(projectDir.toString() + "/.gradle/2.3/taskArtifacts/")
-    def collection = files { folderName.listFiles() }
-    collection.each {
-        println it
-    }
 }
 
 
