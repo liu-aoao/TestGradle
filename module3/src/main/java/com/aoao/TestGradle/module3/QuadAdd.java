@@ -7,8 +7,6 @@ import com.aoao.TestGradle.module2.*;
  */
 public class QuadAdd {
     public static int Add(int a, int b, int c, int d) {
-        return DoubleAdd.Add(TripleAdd.Add(a, b, c), d) + 1;
+        return DoubleAdd.Add(TripleAdd.Add(a, b, c), d);
     }
 }
-
-// will this change affect JAR file?
