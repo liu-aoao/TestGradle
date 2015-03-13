@@ -61,6 +61,14 @@ subprojects { module ->
     module.group = projectIds.group
     module.version = projectIds.version
 
+    task checkJarExists {
+        print "Looking for existing JAR file... "
+        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
+        println targetFilePath
+
+        println "File exists: " + file(targetFilePath).exists().toString()
+    }
+
     task annouceBuilt << {
         print "Project is built, the result is: "
         if (module.assemble.state.getFailure() != null) {
@@ -85,6 +93,7 @@ subprojects { module ->
         }
     }
 
+    module.assemble.mustRunAfter(":$module.name:checkJarExists")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
     module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
