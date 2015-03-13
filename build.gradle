@@ -101,6 +101,13 @@ subprojects { module ->
 
 }
 
+task checkCheckSumExists {
+    def fileName = projectDir.toString() + "/.gradle/2.3/taskArtifacts/fileHashes.bin"
+    println fileName
+    println "Check sum file exists: " + file(fileName).exists().toString()
+}
+
+
 task resolveAllDependencies() << {
     subprojects {
         it.dependencies()
