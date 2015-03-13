@@ -4,17 +4,19 @@ dependencies {
     compile "com.google.guava:guava:17.0"
 }
 
-task filename << {
-    def builtJarName = "$project.name" + "-" + "$version" + ".jar"
-    def builtJar = file(buildDir.toString() + "/libs/" + builtJarName)
-    def destDir = file(buildDir.toString() + "/tmp")
-    inputs.file builtJar
+task filename {
+
+    def sourceFile = file(projectDir.toString() + "/src/main/java/com/aoao/TestGradle/module1/DoubleAdd.java")
+    def destDir = file(projectDir.toString())
+    inputs.file sourceFile
     outputs.dir destDir
 
     doLast {
-        println "!!!!!!!\nI'm running!\n!!!!!!!!!"
         def destFile = new File(destDir, "tmp.txt")
-        destFile.text = "allways the same\n"
+
+        Random random = new Random(System.currentTimeMillis())
+        def randNum = random.nextInt()
+        destFile.text = "Random number is $randNum"
     }
 }
 
