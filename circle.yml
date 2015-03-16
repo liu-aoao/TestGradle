@@ -23,5 +23,5 @@ dependencies:
 
 test:
   override:
-    - ./gradlew assemble -d
+    - ./gradlew assemble
     - ./gradlew test

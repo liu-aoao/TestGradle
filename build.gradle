@@ -25,18 +25,21 @@ allprojects { module ->
     module.group = projectIds.group
     module.version = projectIds.version
 
-//    task checkJarExists << {
-//        print "Looking for existing JAR file... "
-//        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
-//        print targetFilePath
-//        println " ... File exists: " + file(targetFilePath).exists().toString()
-//
-//        if (file(targetFilePath).exists()) {
-//            ant.checksum(file: file(targetFilePath))
-//            println file(targetFilePath + ".MD5").text
-//            delete(file(targetFilePath + ".MD5"))
-//        }
-//    }
+    task checkHistoryExists {
+        print "Looking for existing history file... "
+        def targetFilePath = module.projectDir.toString() + "/.gradle"
+        print targetFilePath
+        def historyFile = file(targetFilePath)
+        println " ... File exists: " + historyFile.exists().toString()
+
+        if (historyFile.exists()) {
+            historyFile.eachFileRecurse() { file ->
+                if(file.isFile()) {
+                    println file
+                }
+            }
+        }
+    }
 
 //    module.repositories {
 //        maven {
@@ -113,7 +116,7 @@ subprojects { module ->
         println "========================================================"
     }
 
-    module.compileJava.finalizedBy(":$module.name:printTaskIO")
+    //module.compileJava.finalizedBy(":$module.name:printTaskIO")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
     module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
