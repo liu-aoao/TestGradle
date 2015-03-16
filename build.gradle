@@ -141,7 +141,16 @@ task myTaks(type: PrintIO) {
 class PrintIO extends DefaultTask {
 
     def printNameAndHash(f) {
-        println "\t$f\t"
+        if(f.isFile()) {
+            print "\t$f\t"
+            ant.checksum(file: f)
+            def ff5 = new File("$f" + ".MD5")
+            def reader = new BufferedReader(new FileReader(ff5))
+            def md5 = reader.readLine()
+            println md5
+            reader.close()
+            ff5.delete()
+        }
     }
 
     def printInput(Task t) {
