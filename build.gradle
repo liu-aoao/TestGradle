@@ -16,6 +16,8 @@ buildscript {
 
 allprojects { module ->
 
+    apply plugin: 'java'
+
     module.repositories {
         mavenCentral()
     }
@@ -23,15 +25,18 @@ allprojects { module ->
     module.group = projectIds.group
     module.version = projectIds.version
 
-    task checkJarExists {
-        print "Looking for existing JAR file... "
-        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
-        print targetFilePath
-        println " ... File exists: " + file(targetFilePath).exists().toString()
-
-        ant.checksum(file: file(targetFilePath))
-        println file(targetFilePath + ".MD5").text
-    }
+//    task checkJarExists << {
+//        print "Looking for existing JAR file... "
+//        def targetFilePath = module.projectDir.toString() + "/build/libs/" + module.name + "-" + module.version + ".jar"
+//        print targetFilePath
+//        println " ... File exists: " + file(targetFilePath).exists().toString()
+//
+//        if (file(targetFilePath).exists()) {
+//            ant.checksum(file: file(targetFilePath))
+//            println file(targetFilePath + ".MD5").text
+//            delete(file(targetFilePath + ".MD5"))
+//        }
+//    }
 
 //    module.repositories {
 //        maven {
@@ -53,20 +58,18 @@ allprojects { module ->
 }
 
 project(':module1') {
-    apply plugin: 'java'
+    dependencies {
+        compile "com.google.guava:guava:17.0"
+    }
 }
 
 project(':module2') {
-    apply plugin: 'java'
-
     dependencies {
         compile project(':module1')
     }
 }
 
 project(':module3') {
-    apply plugin: 'java'
-
     dependencies {
         compile project(':module1')
         compile project(':module2')
@@ -99,6 +102,18 @@ subprojects { module ->
         }
     }
 
+    task printTaskIO(type: PrintIO) << {
+        println "For module: $module.name"
+        printInput(module.compileJava)
+        printOutput(module.compileJava)
+        printInput(module.jar)
+        printOutput(module.jar)
+        printInput(module.compileTestJava)
+        printOutput(module.compileTestJava)
+        println "========================================================"
+    }
+
+    module.compileJava.finalizedBy(":$module.name:printTaskIO")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
     module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
@@ -117,4 +132,48 @@ task resolveAllDependencies() << {
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
 }
+
+task myTaks(type: PrintIO) {
+    printInput(compileJava)
+    printOutput(compileJava)
+}
+
+class PrintIO extends DefaultTask {
+
+    def printNameAndHash(f) {
+        println "\t$f\t"
+    }
+
+    def printInput(Task t) {
+        println "Task Inputs of $t.name: "
+        t.inputs.getFiles().each {
+            if(it.isDirectory()) {
+                it.eachFileRecurse() { file ->
+                    if(file.isFile()) {
+                        printNameAndHash(file)
+                    }
+                }
+            } else {
+                printNameAndHash(it)
+            }
+        }
+    }
+
+    def printOutput(Task t) {
+        println "Task Outputs of $t.name: "
+        t.outputs.getFiles().each {
+            if(it.isDirectory()) {
+                it.eachFileRecurse() { file ->
+                    if(file.isFile()) {
+                        printNameAndHash(file)
+                    }
+                }
+            } else {
+                printNameAndHash(it)
+            }
+        }
+    }
+}
+
+
 
