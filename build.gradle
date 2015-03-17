@@ -118,9 +118,9 @@ subprojects { module ->
 
     module.compileJava.finalizedBy(":$module.name:printTaskIO")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
-    module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
+    //module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
-    module.annouceTest.mustRunAfter(":$module.name:test")
+    //module.annouceTest.mustRunAfter(":$module.name:test")
 
 }
 
