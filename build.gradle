@@ -116,7 +116,7 @@ subprojects { module ->
         println "========================================================"
     }
 
-    //module.compileJava.finalizedBy(":$module.name:printTaskIO")
+    module.compileJava.finalizedBy(":$module.name:printTaskIO")
     module.assemble.finalizedBy(":$module.name:annouceBuilt")
     module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     module.test.finalizedBy(":$module.name:annouceTest")
@@ -134,11 +134,6 @@ task resolveAllDependencies() << {
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'
-}
-
-task myTaks(type: PrintIO) {
-    printInput(compileJava)
-    printOutput(compileJava)
 }
 
 class PrintIO extends DefaultTask {
