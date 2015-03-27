@@ -15,3 +15,12 @@
 *~
 out
 build
+.idea/workspace.xml
+
+.gradle/2.3/taskArtifacts/fileHashes.bin
+
+.gradle/2.3/taskArtifacts/fileSnapshots.bin
+
+.gradle/2.3/taskArtifacts/outputFileStates.bin
+
+.gradle/2.3/taskArtifacts/taskArtifacts.bin
