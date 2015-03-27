@@ -23,6 +23,10 @@ allprojects { module ->
     module.group = projectIds.group
     module.version = projectIds.version
 
+    task resolveAllDependencies() << {
+        configurations.all { it.resolve() }
+    }
+
 //    task checkHistoryExists {
 //        print "Looking for existing history file... "
 //        def targetFilePath = module.projectDir.toString() + "/.gradle"
@@ -106,14 +110,6 @@ subprojects { module ->
     //module.annouceTest.mustRunAfter(":$module.name:test")
 
 }
-
-
-task resolveAllDependencies() << {
-    subprojects {
-        it.dependencies()
-    }
-}
-
 
 task wrapper(type: Wrapper) {
     gradleVersion = '2.3'

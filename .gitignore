@@ -5,6 +5,7 @@
 .settings
 .idea
 .gradle
+.gradle/*
 .classpath
 .project
 *.iml
