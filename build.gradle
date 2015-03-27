@@ -69,22 +69,22 @@ project(':module3') {
 subprojects { module ->
 
     task annouceBuilt << {
-        print "Project is built, the result is: "
-        if (module.assemble.state.getFailure() != null) {
+        print " Project is built, the result is: "
+        if (module.compileJava.state.getFailure() != null) {
             println "FAILURE!"
         } else {
             println "SUCCESS!"
         }
 
-        if (module.assemble.state.getSkipMessage() == "UP-TO-DATE") {
-            println "Task is already up-to-date"
+        if (module.compileJava.state.getSkipMessage() == "UP-TO-DATE") {
+            println " Task is already up-to-date"
         } else {
-            println "This is a new built"
+            println " This is a new built"
         }
     }
 
     task annouceTest << {
-        print "Task test is executed, the result is: "
+        print " Task test is executed, the result is: "
         if (module.test.state.failure == null) {
             println "SUCCESS!"
         } else {
@@ -103,10 +103,10 @@ subprojects { module ->
         println "========================================================"
     }
 
-    module.compileJava.finalizedBy(":$module.name:printTaskIO")
-    module.assemble.finalizedBy(":$module.name:annouceBuilt")
+    //module.compileJava.finalizedBy(":$module.name:printTaskIO")
+    module.compileJava.finalizedBy(":$module.name:annouceBuilt")
     //module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
-    module.test.finalizedBy(":$module.name:annouceTest")
+    //module.test.finalizedBy(":$module.name:annouceTest")
     //module.annouceTest.mustRunAfter(":$module.name:test")
 
 }
