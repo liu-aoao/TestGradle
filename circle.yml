@@ -15,13 +15,10 @@ dependencies:
   override:
     - ./gradlew resolveAllDependencies
   cache_directories:
-    - module1/build
-    - module2/build
-    - module3/build
-    - .gradle
+    - ./.gradle
+    - ./build
     - ~/.gradle
 
 test:
   override:
-    - ./gradlew assemble -q
-    - ./gradlew test -q
+    - ./gradlew test

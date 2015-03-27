@@ -5,8 +5,6 @@ ext.projectIds = ['group': 'com.aoao.TestGradle', 'version': '0.1.0']
 group = projectIds.group
 version = projectIds.version
 
-mainClassName = "com.aoao.TestGradle.module3.Run"
-
 buildscript {
     if (System.getenv('CIRCLECI')) {
         ext.artifactoryUsername = System.getenv('ARTIFACTORY_USERNAME')
@@ -25,35 +23,17 @@ allprojects { module ->
     module.group = projectIds.group
     module.version = projectIds.version
 
-    task checkHistoryExists {
-        print "Looking for existing history file... "
-        def targetFilePath = module.projectDir.toString() + "/.gradle"
-        print targetFilePath
-        def historyFile = file(targetFilePath)
-        println " ... File exists: " + historyFile.exists().toString()
-
-        if (historyFile.exists()) {
-            historyFile.eachFileRecurse() { file ->
-                if(file.isFile()) {
-                    println file
-                }
-            }
-        }
-    }
-
-//    module.repositories {
-//        maven {
-//            url "https://snapchat.artifactoryonline.com/snapchat/plugins"
-//            credentials {
-//                if (System.getenv('CIRCLECI')) {
-//                    username = artifactoryUsername
-//                    password = artifactoryPassword
-//                    println "I'm here, username = $username, password = $password"
-//                }
-//                else {
-//                    username = "Yunao.Liu"
-//                    password = "Snapchat1"
-//                    println "I'm here, username = $username, password = $password"
+//    task checkHistoryExists {
+//        print "Looking for existing history file... "
+//        def targetFilePath = module.projectDir.toString() + "/.gradle"
+//        print targetFilePath
+//        def historyFile = file(targetFilePath)
+//        println " ... File exists: " + historyFile.exists().toString()
+//
+//        if (historyFile.exists()) {
+//            historyFile.eachFileRecurse() { file ->
+//                if(file.isFile()) {
+//                    println file
 //                }
 //            }
 //        }
@@ -63,12 +43,14 @@ allprojects { module ->
 project(':module1') {
     dependencies {
         compile "com.google.guava:guava:17.0"
+        testCompile "junit:junit:4.11"
     }
 }
 
 project(':module2') {
     dependencies {
         compile project(':module1')
+        testCompile "junit:junit:4.11"
     }
 }
 
@@ -76,6 +58,7 @@ project(':module3') {
     dependencies {
         compile project(':module1')
         compile project(':module2')
+        testCompile "junit:junit:4.11"
     }
 }
 

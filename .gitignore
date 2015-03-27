@@ -1,0 +1,16 @@
+.classpath
+.project
+.google_apis
+.DS_Store
+.settings
+.idea
+.gradle
+.classpath
+.project
+*.iml
+*.ipr
+*.iws
+*.eml
+*~
+out
+build
