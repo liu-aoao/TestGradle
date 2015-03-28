@@ -93,18 +93,19 @@ subprojects { module ->
     }
 
     task printTaskIO(type: PrintIO) << {
-        println "For module: $module.name"
+        println " For module: $module.name"
         printInput(module.compileJava)
         printOutput(module.compileJava)
-        printInput(module.jar)
-        printOutput(module.jar)
-        printInput(module.compileTestJava)
-        printOutput(module.compileTestJava)
-        println "========================================================"
+        //printInput(module.jar)
+        //printOutput(module.jar)
+        //printInput(module.compileTestJava)
+        //printOutput(module.compileTestJava)
+        println " ========================================================"
     }
 
     //module.compileJava.finalizedBy(":$module.name:printTaskIO")
     module.compileJava.finalizedBy(":$module.name:annouceBuilt")
+    module.annouceBuilt.finalizedBy(":$module.name:printTaskIO")
     //module.annouceBuilt.mustRunAfter(":$module.name:compileTestJava")
     //module.test.finalizedBy(":$module.name:annouceTest")
     //module.annouceTest.mustRunAfter(":$module.name:test")

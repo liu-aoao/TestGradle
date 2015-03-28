@@ -17,6 +17,9 @@ dependencies:
     - ./gradlew test
   cache_directories:
     - ./out
+    - ./module1/build
+    - ./module2/build
+    - ./module3/build
     - ./.gradle
     - ./build
     - ~/.gradle
