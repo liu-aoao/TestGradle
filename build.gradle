@@ -71,9 +71,9 @@ subprojects { module ->
     task annouceBuilt << {
         print " Project is built, the result is: "
         if (module.compileJava.state.getFailure() != null) {
-            println "FAILURE!"
+            println " FAILURE!"
         } else {
-            println "SUCCESS!"
+            println " SUCCESS!"
         }
 
         if (module.compileJava.state.getSkipMessage() == "UP-TO-DATE") {
@@ -86,9 +86,9 @@ subprojects { module ->
     task annouceTest << {
         print " Task test is executed, the result is: "
         if (module.test.state.failure == null) {
-            println "SUCCESS!"
+            println " SUCCESS!"
         } else {
-            println "FAILURE!"
+            println " FAILURE!"
         }
     }
 
@@ -96,10 +96,8 @@ subprojects { module ->
         println " For module: $module.name"
         printInput(module.compileJava)
         printOutput(module.compileJava)
-        //printInput(module.jar)
-        //printOutput(module.jar)
-        //printInput(module.compileTestJava)
-        //printOutput(module.compileTestJava)
+        printInput(module.compileTestJava)
+        printOutput(module.compileTestJava)
         println " ========================================================"
     }
 
@@ -120,7 +118,7 @@ class PrintIO extends DefaultTask {
 
     def printNameAndHash(f) {
         if(f.isFile()) {
-            print "\t$f\t"
+            print " \t$f\t"
             ant.checksum(file: f)
             def ff5 = new File("$f" + ".MD5")
             def reader = new BufferedReader(new FileReader(ff5))
@@ -132,7 +130,7 @@ class PrintIO extends DefaultTask {
     }
 
     def printInput(Task t) {
-        println "Task Inputs of $t.name: "
+        println " Task Inputs of $t.name: "
         t.inputs.getFiles().each {
             if(it.isDirectory()) {
                 it.eachFileRecurse() { file ->
@@ -147,7 +145,7 @@ class PrintIO extends DefaultTask {
     }
 
     def printOutput(Task t) {
-        println "Task Outputs of $t.name: "
+        println " Task Outputs of $t.name: "
         t.outputs.getFiles().each {
             if(it.isDirectory()) {
                 it.eachFileRecurse() { file ->

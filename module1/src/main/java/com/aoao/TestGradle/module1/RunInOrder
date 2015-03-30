@@ -1,0 +1,39 @@
+//package picaboo.entity.util;
+//
+///**
+//* Created by yunao.liu on 3/20/15.
+//*/
+//
+//
+//import org.junit.Test;
+//import org.junit.runner.RunWith;
+//import org.junit.runners.Suite;
+//
+///**
+//* Created by yunao.liu on 3/19/15.
+//*/
+//
+//@RunWith(Suite.class)
+//@Suite.SuiteClasses({
+////        picaboo.admin.snapsbyteamsnapchat.safetysnap.SafetySnapsByTeamSnapChatJobTest.class,
+////        picaboo.banquo.CheckUserIntegrationTest.class,
+////        picaboo.banquo.BestFriendsIntegrationTest.class,
+//
+//        picaboo.banquo.DownloadProfileMediaTest.class,
+//        picaboo.entity.ProfileMediaTest.class,
+////        picaboo.banquo.LogoutIntegrationTest.class,
+////        picaboo.banquo.FriendActionIntegrationTest.class,
+////        picaboo.banquo.RegisterIntegrationTest.class,
+////        picaboo.banquo.LoginIntegrationTest.class,
+////        picaboo.banquo.UpdateSnapsIntegrationTest.class,
+////        picaboo.banquo.SyncUpdatesIntegrationTest.class,
+////        picaboo.banquo.SuggestUsernameIntegrationTest.class,
+////        picaboo.blaze.SetNumBestFriendsIntegrationTest.class,
+////        picaboo.blaze.PostStoryIntegrationTest.class,
+////        picaboo.blaze.LocationSpecificDataServletIntegrationTest.class,
+////        picaboo.blaze.StoryBlobIntegrationTest.class,
+//})
+//public class TestInSequence {
+//
+//}
+//3X
